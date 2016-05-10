@@ -1,0 +1,22 @@
+- question.solutions.each do |solution|
+  .question_solution
+    %span= solution.solution
+    %span.Firstname="-"
+    %span= solution.model_user.first_name
+    %span= solution.model_user.last_name
+    - if current_model_user == solution.model_user
+      .commentlink
+        = link_to 'Edit', edit_question_solution_path(id: solution.id, question_id: question.id)
+        = link_to 'Destroy', question_solution_path(id: solution.id, question_id: question.id), method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to "solution comment", new_question_solution_comment_path(question,solution_id: solution.id)
+    %br/
+    %hr
+  - solution.comments.each do|c|
+    .solution_comment
+      %span= c.comment
+      %span.Firstname="-"
+      %span= current_model_user.first_name
+      %span= current_model_user.last_name
+      - if current_model_user == solution.model_user
+        = link_to 'Edit', edit_question_comment_path(id: c.id, question_id:question)
+        = link_to 'Destroy', question_comment_path(id: c.id, question_id:question), method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,0 +1,6 @@
+- question.comments.each do|c|
+   = c.comment
+   = current_model_user.first_name
+   = current_model_user.last_name
+   = link_to 'Edit', edit_question_comment_path(id: c.id, question_id:question)
+   = link_to 'Destroy', question_comment_path(id: c.id, question_id:question), method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,0 +1,18 @@
+%h1.content
+  = @question.content
+%h4
+= current_model_user.first_name rescue nil
+= current_model_user.last_name rescue nil
+%hr
+%h4.questioncomment
+  = render :partial => 'comments/index', :locals => { comments: @comments, question: @question}
+= button_to "Add comment", new_question_comment_path(@question), method: :get
+%br/
+
+%br/
+= @question.solutions.count
+= @question.model_user.anscount
+=button_to "Add solution", new_question_solution_path(@question), method: :get
+%h3.answercomment
+  = render :partial => 'solutions/index', :locals => { solutions: @solutions, question: @question}
+%hr

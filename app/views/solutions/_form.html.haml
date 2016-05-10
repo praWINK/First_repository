@@ -1,0 +1,15 @@
+= form_for([@question, @solution]) do |f|
+  - if @solution.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@solution.errors.count, "error")
+        prohibited this solution from being saved:
+      %ul
+        - @solution.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :solutions
+    %br/
+    = f.text_area :solution,  cols: '60', rows: '10'
+  .actions
+    = f.submit

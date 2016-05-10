@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Hariapp
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    - if user_signed_in?
+      %span.sign= image_tag(current_user.avatar.thumb.url)
+      %span.sign= link_to current_user.Firstname,edit_user_registration_path
+      %span.sign= link_to "sign out",destroy_user_session_path,method: :delete
+    - else
+      %span.sign= link_to "sign in",new_user_session_path
+      %span.sign= link_to "sign up",new_user_registration_path
+    %p.notice= notice
+    %p.alert= alert
+    = yield
