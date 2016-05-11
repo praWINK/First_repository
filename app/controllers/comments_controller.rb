@@ -15,13 +15,10 @@ class CommentsController < ApplicationController
     end
   end
 
-
   def edit
   end
 
   def destroy
-    #find_question
-    #@commentable = @question.comments.where(:id => params[:id]).first
     @commentable.destroy
     if (@commentable.commentable_type == 'Question')
       redirect_to @question, notice: 'question comment was successfully destroyed.'
